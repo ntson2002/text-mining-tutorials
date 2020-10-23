@@ -5,9 +5,9 @@ from nltk.corpus.reader import ConllCorpusReader
 from sklearn_crfsuite import metrics
 
 
-def load_data_vslp2018():
-    train_sents = ConllCorpusReader('../data/vlsp2018', 'train.conll', ['words', 'pos', 'ignore', 'chunk']).iob_sents()
-    test_sents = ConllCorpusReader('../data/vlsp2018', 'test.conll', ['words', 'pos', 'ignore', 'chunk']).iob_sents()
+def load_data_vslp2018(folder='../data/vlsp2018'):
+    train_sents = ConllCorpusReader(folder, 'train.conll', ['words', 'pos', 'ignore', 'chunk']).iob_sents()
+    test_sents = ConllCorpusReader(folder, 'test.conll', ['words', 'pos', 'ignore', 'chunk']).iob_sents()
 
     train_sents = [x for x in train_sents if len(x) > 0]
     test_sents = [x for x in test_sents if len(x) > 0]
