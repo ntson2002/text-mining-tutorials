@@ -13,16 +13,21 @@ if __name__ == '__main__':
     evaluate(crf, train_sents)
 
     print("==================== Predict from text ====================")
-    from vncorenlp import VnCoreNLP
-    tokenizer = VnCoreNLP(address='http://127.0.0.1', port=9000)  # elastic tokenizer
     print("=== Input text  =====")
     text = "Bà Hà là một trong hai hộ nuôi bò sữa đầu tiên của xã Hoà Bình."
-    pos_tokens = tokenizer.pos_tag(text)
+
+    # from vncorenlp import VnCoreNLP
+    # import itertools
+    # tokenizer = VnCoreNLP(address='http://127.0.0.1', port=9000)  # elastic tokenizer
+    # pos_tokens = tokenizer.pos_tag(text)
+    # pos_tokens = list(itertools.chain(*pos_tokens))
+
+    from underthesea import pos_tag
+    pos_tokens = pos_tag(text)
     print("=== Tokenizing and POS  =====")
     print(pos_tokens)
-    import itertools
-    a_sentence = list(itertools.chain(*pos_tokens))
-    a_sentence = [i + ('-',) for i in a_sentence]
+
+    a_sentence = [i + ('-',) for i in pos_tokens]
     print("=== Conll format =====")
     for x in a_sentence:
         print(x)

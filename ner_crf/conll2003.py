@@ -17,6 +17,8 @@ def load_data_conll2003():
 
 
 def text_to_conll(text):
+    nltk.download('punkt')
+    nltk.download('averaged_perceptron_tagger')
     text = nltk.word_tokenize(text)
     x = nltk.pos_tag(text)
     x = [i + ('-',) for i in x]
