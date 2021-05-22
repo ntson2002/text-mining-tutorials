@@ -36,11 +36,14 @@ def test():
     # Predict from text
     print("===== Predict from text ====")
     text = "He is a German who works at Google Inc."
+    print(text)
     a_sentence = text_to_conll(text)
     print(a_sentence)
     a_sentence_features = sent2features(a_sentence)
-    yyy = crf.predict([a_sentence_features])
-    print(yyy)
+    yyy = crf.predict([a_sentence_features])[0]
+    for x, y in zip(a_sentence, yyy):
+        print("\t".join(x), "==>", y)
+    # print(yyy)
 
 
 def train():
